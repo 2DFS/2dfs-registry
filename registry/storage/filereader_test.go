@@ -7,8 +7,8 @@ import (
 	mrand "math/rand"
 	"testing"
 
-	"github.com/distribution/distribution/v3/internal/dcontext"
-	"github.com/distribution/distribution/v3/registry/storage/driver/inmemory"
+	"github.com/2DFS/2dfs-registry/v3/internal/dcontext"
+	"github.com/2DFS/2dfs-registry/v3/registry/storage/driver/inmemory"
 	"github.com/opencontainers/go-digest"
 )
 
@@ -21,7 +21,7 @@ func TestSimpleRead(t *testing.T) {
 	}
 
 	if n != len(content) {
-		t.Fatalf("random read didn't fill buffer")
+		t.Fatal("random read didn't fill buffer")
 	}
 
 	dgst, err := digest.FromReader(bytes.NewReader(content))
@@ -47,7 +47,7 @@ func TestSimpleRead(t *testing.T) {
 	}
 
 	if !verifier.Verified() {
-		t.Fatalf("unable to verify read data")
+		t.Fatal("unable to verify read data")
 	}
 }
 

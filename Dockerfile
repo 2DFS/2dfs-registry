@@ -1,8 +1,8 @@
 # syntax=docker/dockerfile:1
 
-ARG GO_VERSION=1.22.5
-ARG ALPINE_VERSION=3.20
-ARG XX_VERSION=1.2.1
+ARG GO_VERSION=1.23.7
+ARG ALPINE_VERSION=3.21
+ARG XX_VERSION=1.6.1
 
 FROM --platform=$BUILDPLATFORM tonistiigi/xx:${XX_VERSION} AS xx
 FROM --platform=$BUILDPLATFORM golang:${GO_VERSION}-alpine${ALPINE_VERSION} AS base
@@ -13,7 +13,7 @@ ENV CGO_ENABLED=0
 WORKDIR /src
 
 FROM base AS version
-ARG PKG=github.com/distribution/distribution/v3
+ARG PKG=github.com/2DFS/2dfs-registry/v3
 RUN --mount=target=. \
   VERSION=$(git describe --match 'v[0-9]*' --dirty='.m' --always --tags) REVISION=$(git rev-parse HEAD)$(if ! git diff --no-ext-diff --quiet --exit-code; then echo .m; fi); \
   echo "-X ${PKG}/version.version=${VERSION#v} -X ${PKG}/version.revision=${REVISION} -X ${PKG}/version.mainpkg=${PKG}" | tee /tmp/.ldflags; \

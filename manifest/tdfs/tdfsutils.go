@@ -12,9 +12,9 @@ import (
 	"github.com/opencontainers/go-digest"
 	v1 "github.com/opencontainers/image-spec/specs-go/v1"
 
-	"github.com/distribution/distribution/v3"
-	"github.com/distribution/distribution/v3/manifest/ocischema"
-	tdfsfilesystem "github.com/giobart/2dfs-builder/filesystem"
+	tdfsfilesystem "github.com/2DFS/2dfs-builder/filesystem"
+	"github.com/2DFS/2dfs-registry/v3"
+	"github.com/2DFS/2dfs-registry/v3/manifest/ocischema"
 )
 
 type Partition struct {
@@ -51,7 +51,7 @@ func CheckTagPartitions(tag string) (string, []Partition) {
 				continue
 			}
 			partitions = append(partitions, part)
-			log.Default().Printf("[PARTITIONING...] Added partition %s \n", part)
+			log.Default().Printf("[PARTITIONING...] Added partition %+v \n", part)
 		}
 	}
 	return onlyTag, partitions

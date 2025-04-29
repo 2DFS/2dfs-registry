@@ -6,13 +6,14 @@ import (
 	"net/url"
 	"strconv"
 
-	"github.com/distribution/distribution/v3"
-	"github.com/distribution/distribution/v3/internal/dcontext"
-	"github.com/distribution/distribution/v3/registry/api/errcode"
-	"github.com/distribution/distribution/v3/registry/storage"
+	"github.com/2DFS/2dfs-registry/v3"
+	"github.com/2DFS/2dfs-registry/v3/internal/dcontext"
+	"github.com/2DFS/2dfs-registry/v3/registry/api/errcode"
+	"github.com/2DFS/2dfs-registry/v3/registry/storage"
 	"github.com/distribution/reference"
 	"github.com/gorilla/handlers"
 	"github.com/opencontainers/go-digest"
+	v1 "github.com/opencontainers/image-spec/specs-go/v1"
 )
 
 // blobUploadDispatcher constructs and returns the blob upload handler for the
@@ -210,7 +211,7 @@ func (buh *blobUploadHandler) PutBlobUploadComplete(w http.ResponseWriter, r *ht
 		return
 	}
 
-	desc, err := buh.Upload.Commit(buh, distribution.Descriptor{
+	desc, err := buh.Upload.Commit(buh, v1.Descriptor{
 		Digest: dgst,
 
 		// TODO(stevvooe): This isn't wildly important yet, but we should
@@ -384,7 +385,7 @@ func (buh *blobUploadHandler) createBlobMountOption(fromRepo, mountDigest string
 // writeBlobCreatedHeaders writes the standard headers describing a newly
 // created blob. A 201 Created is written as well as the canonical URL and
 // blob digest.
-func (buh *blobUploadHandler) writeBlobCreatedHeaders(w http.ResponseWriter, desc distribution.Descriptor) error {
+func (buh *blobUploadHandler) writeBlobCreatedHeaders(w http.ResponseWriter, desc v1.Descriptor) error {
 	ref, err := reference.WithDigest(buh.Repository.Named(), desc.Digest)
 	if err != nil {
 		return err

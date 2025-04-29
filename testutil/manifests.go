@@ -3,12 +3,13 @@ package testutil
 import (
 	"fmt"
 
-	"github.com/distribution/distribution/v3"
-	"github.com/distribution/distribution/v3/internal/dcontext"
-	"github.com/distribution/distribution/v3/manifest/manifestlist"
-	"github.com/distribution/distribution/v3/manifest/ocischema"
-	"github.com/distribution/distribution/v3/manifest/schema2"
+	"github.com/2DFS/2dfs-registry/v3"
+	"github.com/2DFS/2dfs-registry/v3/internal/dcontext"
+	"github.com/2DFS/2dfs-registry/v3/manifest/manifestlist"
+	"github.com/2DFS/2dfs-registry/v3/manifest/ocischema"
+	"github.com/2DFS/2dfs-registry/v3/manifest/schema2"
 	"github.com/opencontainers/go-digest"
+	v1 "github.com/opencontainers/image-spec/specs-go/v1"
 )
 
 // MakeManifestList constructs a manifest list out of a list of manifest digests
@@ -51,7 +52,7 @@ func MakeSchema2Manifest(repository distribution.Repository, digests []digest.Di
 	}
 	builder := schema2.NewManifestBuilder(d, configJSON)
 	for _, dgst := range digests {
-		if err := builder.AppendReference(distribution.Descriptor{Digest: dgst}); err != nil {
+		if err := builder.AppendReference(v1.Descriptor{Digest: dgst}); err != nil {
 			return nil, fmt.Errorf("unexpected error building schema2 manifest: %v", err)
 		}
 	}
@@ -72,7 +73,7 @@ func MakeOCIManifest(repository distribution.Repository, digests []digest.Digest
 
 	builder := ocischema.NewManifestBuilder(blobStore, configJSON, make(map[string]string))
 	for _, dgst := range digests {
-		if err := builder.AppendReference(distribution.Descriptor{Digest: dgst}); err != nil {
+		if err := builder.AppendReference(v1.Descriptor{Digest: dgst}); err != nil {
 			return nil, fmt.Errorf("unexpected error building OCI manifest: %v", err)
 		}
 	}

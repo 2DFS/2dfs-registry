@@ -13,7 +13,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/distribution/distribution/v3/manifest/schema2"
+	"github.com/2DFS/2dfs-registry/v3/manifest/schema2"
 	events "github.com/docker/go-events"
 )
 
@@ -179,7 +179,7 @@ func TestHTTPSink(t *testing.T) {
 			}
 		} else {
 			if err == nil {
-				t.Fatalf("the endpoint should have rejected the request")
+				t.Fatal("the endpoint should have rejected the request")
 			}
 			t.Logf("write error: %v", err)
 		}

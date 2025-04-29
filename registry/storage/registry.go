@@ -5,9 +5,9 @@ import (
 	"regexp"
 	"runtime"
 
-	"github.com/distribution/distribution/v3"
-	"github.com/distribution/distribution/v3/registry/storage/cache"
-	storagedriver "github.com/distribution/distribution/v3/registry/storage/driver"
+	"github.com/2DFS/2dfs-registry/v3"
+	"github.com/2DFS/2dfs-registry/v3/registry/storage/cache"
+	storagedriver "github.com/2DFS/2dfs-registry/v3/registry/storage/driver"
 	"github.com/distribution/reference"
 )
 
@@ -259,6 +259,10 @@ func (repo *repository) Manifests(ctx context.Context, options ...distribution.M
 		blobStore:  repo.blobStore,
 		repository: repo,
 		linkPath:   manifestRevisionLinkPath,
+	}
+
+	if repo.descriptorCache != nil {
+		statter = cache.NewCachedBlobStatter(repo.descriptorCache, statter)
 	}
 
 	if repo.registry.blobDescriptorServiceFactory != nil {

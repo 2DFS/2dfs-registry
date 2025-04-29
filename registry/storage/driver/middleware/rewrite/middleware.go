@@ -7,14 +7,14 @@ import (
 	"net/url"
 	"strings"
 
-	storagedriver "github.com/distribution/distribution/v3/registry/storage/driver"
-	storagemiddleware "github.com/distribution/distribution/v3/registry/storage/driver/middleware"
+	storagedriver "github.com/2DFS/2dfs-registry/v3/registry/storage/driver"
+	storagemiddleware "github.com/2DFS/2dfs-registry/v3/registry/storage/driver/middleware"
 	"github.com/sirupsen/logrus"
 )
 
 func init() {
 	if err := storagemiddleware.Register("rewrite", newRewriteStorageMiddleware); err != nil {
-		logrus.Errorf("failed to register redirect storage middleware: %v", err)
+		logrus.Errorf("failed to register rewrite storage middleware: %v", err)
 	}
 }
 

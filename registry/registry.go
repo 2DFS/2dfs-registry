@@ -24,13 +24,13 @@ import (
 	"golang.org/x/net/http2"
 	"golang.org/x/net/http2/h2c"
 
-	"github.com/distribution/distribution/v3/configuration"
-	"github.com/distribution/distribution/v3/health"
-	"github.com/distribution/distribution/v3/internal/dcontext"
-	"github.com/distribution/distribution/v3/registry/handlers"
-	"github.com/distribution/distribution/v3/registry/listener"
-	"github.com/distribution/distribution/v3/tracing"
-	"github.com/distribution/distribution/v3/version"
+	"github.com/2DFS/2dfs-registry/v3/configuration"
+	"github.com/2DFS/2dfs-registry/v3/health"
+	"github.com/2DFS/2dfs-registry/v3/internal/dcontext"
+	"github.com/2DFS/2dfs-registry/v3/registry/handlers"
+	"github.com/2DFS/2dfs-registry/v3/registry/listener"
+	"github.com/2DFS/2dfs-registry/v3/tracing"
+	"github.com/2DFS/2dfs-registry/v3/version"
 )
 
 // a map of TLS cipher suite names to constants in https://golang.org/pkg/crypto/tls/#pkg-constants
@@ -77,6 +77,14 @@ const defaultTLSVersionStr = "tls1.2"
 var tlsVersions = map[string]uint16{
 	"tls1.2": tls.VersionTLS12,
 	"tls1.3": tls.VersionTLS13,
+}
+
+// tlsClientAuth maps user-specified values to TLS Client Authentication constants.
+var tlsClientAuth = map[string]tls.ClientAuthType{
+	configuration.ClientAuthRequestClientCert:          tls.RequestClientCert,
+	configuration.ClientAuthRequireAnyClientCert:       tls.RequireAnyClientCert,
+	configuration.ClientAuthVerifyClientCertIfGiven:    tls.VerifyClientCertIfGiven,
+	configuration.ClientAuthRequireAndVerifyClientCert: tls.RequireAndVerifyClientCert,
 }
 
 // defaultLogFormatter is the default formatter to use for logs.
@@ -298,7 +306,18 @@ func (registry *Registry) ListenAndServe() error {
 				dcontext.GetLogger(registry.app).Debugf("CA Subject: %s", string(subj))
 			}
 
-			tlsConf.ClientAuth = tls.RequireAndVerifyClientCert
+			if config.HTTP.TLS.ClientAuth != "" {
+				tlsClientAuthMod, ok := tlsClientAuth[string(config.HTTP.TLS.ClientAuth)]
+
+				if !ok {
+					return fmt.Errorf("unknown client auth mod '%s' specified for http.tls.clientauth", config.HTTP.TLS.ClientAuth)
+				}
+
+				tlsConf.ClientAuth = tlsClientAuthMod
+			} else {
+				tlsConf.ClientAuth = tls.RequireAndVerifyClientCert
+			}
+
 			tlsConf.ClientCAs = pool
 		}
 

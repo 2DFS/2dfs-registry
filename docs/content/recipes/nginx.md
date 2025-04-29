@@ -68,7 +68,7 @@ proxy_set_header  X-Forwarded-Proto $scheme;
 
 Otherwise Nginx resets the ELB's values, and the requests are not routed
 properly. For more information, see
-[#970](https://github.com/distribution/distribution/issues/970).
+[#970](https://github.com/2DFS/2dfs-registry/issues/970).
 
 ## Setting things up
 
@@ -166,8 +166,6 @@ Review the [requirements](../#requirements), then follow these steps.
 5. Create the compose file. Paste the following YAML into a new file called `docker-compose.yml`.
 
    ```yaml
-   version: "3"
-
    services:
        nginx:
          # Note : Only nginx:alpine supports bcrypt.
@@ -183,7 +181,7 @@ Review the [requirements](../#requirements), then follow these steps.
            - ./auth/nginx.conf:/etc/nginx/nginx.conf:ro
 
        registry:
-         image: registry:2
+         image: registry:3
          volumes:
            - ./data:/var/lib/registry
    ```
@@ -193,7 +191,7 @@ Review the [requirements](../#requirements), then follow these steps.
 Now, start your stack:
 
 ```consonle
-$ docker-compose up -d
+$ docker compose up -d
 ```
 
 Login with a "push" authorized user (using `testuser` and `testpassword`), then

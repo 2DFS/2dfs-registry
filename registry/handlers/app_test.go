@@ -8,15 +8,15 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/distribution/distribution/v3/configuration"
-	"github.com/distribution/distribution/v3/internal/dcontext"
-	"github.com/distribution/distribution/v3/registry/api/errcode"
-	v2 "github.com/distribution/distribution/v3/registry/api/v2"
-	"github.com/distribution/distribution/v3/registry/auth"
-	_ "github.com/distribution/distribution/v3/registry/auth/silly"
-	"github.com/distribution/distribution/v3/registry/storage"
-	memorycache "github.com/distribution/distribution/v3/registry/storage/cache/memory"
-	"github.com/distribution/distribution/v3/registry/storage/driver/inmemory"
+	"github.com/2DFS/2dfs-registry/v3/configuration"
+	"github.com/2DFS/2dfs-registry/v3/internal/dcontext"
+	"github.com/2DFS/2dfs-registry/v3/registry/api/errcode"
+	v2 "github.com/2DFS/2dfs-registry/v3/registry/api/v2"
+	"github.com/2DFS/2dfs-registry/v3/registry/auth"
+	_ "github.com/2DFS/2dfs-registry/v3/registry/auth/silly"
+	"github.com/2DFS/2dfs-registry/v3/registry/storage"
+	memorycache "github.com/2DFS/2dfs-registry/v3/registry/storage/cache/memory"
+	"github.com/2DFS/2dfs-registry/v3/registry/storage/driver/inmemory"
 )
 
 // TestAppDispatcher builds an application with a test dispatcher and ensures
@@ -237,41 +237,41 @@ func TestAppendAccessRecords(t *testing.T) {
 	result := appendAccessRecords(records, http.MethodGet, repo)
 	expectedResult := []auth.Access{expectedPullRecord}
 	if ok := reflect.DeepEqual(result, expectedResult); !ok {
-		t.Fatalf("Actual access record differs from expected")
+		t.Fatal("Actual access record differs from expected")
 	}
 
 	records = []auth.Access{}
 	result = appendAccessRecords(records, http.MethodHead, repo)
 	expectedResult = []auth.Access{expectedPullRecord}
 	if ok := reflect.DeepEqual(result, expectedResult); !ok {
-		t.Fatalf("Actual access record differs from expected")
+		t.Fatal("Actual access record differs from expected")
 	}
 
 	records = []auth.Access{}
 	result = appendAccessRecords(records, http.MethodPost, repo)
 	expectedResult = []auth.Access{expectedPullRecord, expectedPushRecord}
 	if ok := reflect.DeepEqual(result, expectedResult); !ok {
-		t.Fatalf("Actual access record differs from expected")
+		t.Fatal("Actual access record differs from expected")
 	}
 
 	records = []auth.Access{}
 	result = appendAccessRecords(records, http.MethodPut, repo)
 	expectedResult = []auth.Access{expectedPullRecord, expectedPushRecord}
 	if ok := reflect.DeepEqual(result, expectedResult); !ok {
-		t.Fatalf("Actual access record differs from expected")
+		t.Fatal("Actual access record differs from expected")
 	}
 
 	records = []auth.Access{}
 	result = appendAccessRecords(records, http.MethodPatch, repo)
 	expectedResult = []auth.Access{expectedPullRecord, expectedPushRecord}
 	if ok := reflect.DeepEqual(result, expectedResult); !ok {
-		t.Fatalf("Actual access record differs from expected")
+		t.Fatal("Actual access record differs from expected")
 	}
 
 	records = []auth.Access{}
 	result = appendAccessRecords(records, http.MethodDelete, repo)
 	expectedResult = []auth.Access{expectedDeleteRecord}
 	if ok := reflect.DeepEqual(result, expectedResult); !ok {
-		t.Fatalf("Actual access record differs from expected")
+		t.Fatal("Actual access record differs from expected")
 	}
 }

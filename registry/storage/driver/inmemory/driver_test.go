@@ -3,8 +3,8 @@ package inmemory
 import (
 	"testing"
 
-	storagedriver "github.com/distribution/distribution/v3/registry/storage/driver"
-	"github.com/distribution/distribution/v3/registry/storage/driver/testsuites"
+	storagedriver "github.com/2DFS/2dfs-registry/v3/registry/storage/driver"
+	"github.com/2DFS/2dfs-registry/v3/registry/storage/driver/testsuites"
 )
 
 func newDriverConstructor() (storagedriver.StorageDriver, error) {
@@ -12,7 +12,7 @@ func newDriverConstructor() (storagedriver.StorageDriver, error) {
 }
 
 func TestInMemoryDriverSuite(t *testing.T) {
-	testsuites.Driver(t, newDriverConstructor)
+	testsuites.Driver(t, newDriverConstructor, false)
 }
 
 func BenchmarkInMemoryDriverSuite(b *testing.B) {

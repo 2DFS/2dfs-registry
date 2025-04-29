@@ -7,9 +7,9 @@ import (
 	"testing"
 
 	"cloud.google.com/go/storage"
-	"github.com/distribution/distribution/v3/internal/dcontext"
-	storagedriver "github.com/distribution/distribution/v3/registry/storage/driver"
-	"github.com/distribution/distribution/v3/registry/storage/driver/testsuites"
+	"github.com/2DFS/2dfs-registry/v3/internal/dcontext"
+	storagedriver "github.com/2DFS/2dfs-registry/v3/registry/storage/driver"
+	"github.com/2DFS/2dfs-registry/v3/registry/storage/driver/testsuites"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
 	"google.golang.org/api/googleapi"
@@ -93,7 +93,7 @@ func newDriverConstructor(tb testing.TB) testsuites.DriverConstructor {
 
 func TestGCSDriverSuite(t *testing.T) {
 	skipCheck(t)
-	testsuites.Driver(t, newDriverConstructor(t))
+	testsuites.Driver(t, newDriverConstructor(t), false)
 }
 
 func BenchmarkGCSDriverSuite(b *testing.B) {
@@ -303,6 +303,6 @@ func TestMoveDirectory(t *testing.T) {
 
 	err = driver.Move(ctx, "/parent/dir", "/parent/other")
 	if err == nil {
-		t.Fatalf("Moving directory /parent/dir /parent/other should have return a non-nil error\n")
+		t.Fatal("Moving directory /parent/dir /parent/other should have return a non-nil error")
 	}
 }

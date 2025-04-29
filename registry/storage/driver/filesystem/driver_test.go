@@ -4,8 +4,8 @@ import (
 	"reflect"
 	"testing"
 
-	storagedriver "github.com/distribution/distribution/v3/registry/storage/driver"
-	"github.com/distribution/distribution/v3/registry/storage/driver/testsuites"
+	storagedriver "github.com/2DFS/2dfs-registry/v3/registry/storage/driver"
+	"github.com/2DFS/2dfs-registry/v3/registry/storage/driver/testsuites"
 )
 
 func newDriverConstructor(tb testing.TB) testsuites.DriverConstructor {
@@ -19,7 +19,7 @@ func newDriverConstructor(tb testing.TB) testsuites.DriverConstructor {
 }
 
 func TestFilesystemDriverSuite(t *testing.T) {
-	testsuites.Driver(t, newDriverConstructor(t))
+	testsuites.Driver(t, newDriverConstructor(t), false)
 }
 
 func BenchmarkFilesystemDriverSuite(b *testing.B) {
