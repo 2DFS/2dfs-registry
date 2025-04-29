@@ -51,7 +51,7 @@ func CheckTagPartitions(tag string) (string, []Partition) {
 				continue
 			}
 			partitions = append(partitions, part)
-			log.Default().Printf("[PARTITIONING...] Added partition %s \n", part)
+			log.Default().Printf("[PARTITIONING...] Added partition %+v \n", part)
 		}
 	}
 	return onlyTag, partitions
