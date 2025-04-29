@@ -62,5 +62,4 @@ func TestCheckTagPartitions(t *testing.T) {
 		}
 		log.Default().Printf("Tag %s with partitions %v parsed successfully\n", parsedTag, paresdPartitions)
 	}
-	return
 }
