@@ -6,7 +6,7 @@ import (
 	"sort"
 	"strconv"
 
-	"github.com/2DFS/2dfs-registry/v3"
+	distribution "github.com/2DFS/2dfs-registry/v3"
 	"github.com/2DFS/2dfs-registry/v3/registry/api/errcode"
 	"github.com/gorilla/handlers"
 )

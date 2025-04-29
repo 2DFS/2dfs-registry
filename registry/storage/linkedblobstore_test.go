@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/2DFS/2dfs-registry/v3"
+	distribution "github.com/2DFS/2dfs-registry/v3"
 	"github.com/2DFS/2dfs-registry/v3/testutil"
 	"github.com/distribution/reference"
 	"github.com/opencontainers/go-digest"

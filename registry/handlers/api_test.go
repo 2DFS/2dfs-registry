@@ -19,7 +19,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/2DFS/2dfs-registry/v3"
+	distribution "github.com/2DFS/2dfs-registry/v3"
 	"github.com/2DFS/2dfs-registry/v3/configuration"
 	"github.com/2DFS/2dfs-registry/v3/manifest/manifestlist"
 	"github.com/2DFS/2dfs-registry/v3/manifest/schema2"

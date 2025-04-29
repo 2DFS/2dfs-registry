@@ -7,7 +7,7 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/2DFS/2dfs-registry/v3"
+	distribution "github.com/2DFS/2dfs-registry/v3"
 	"github.com/2DFS/2dfs-registry/v3/registry/storage/cache/memory"
 	"github.com/2DFS/2dfs-registry/v3/registry/storage/driver"
 	"github.com/2DFS/2dfs-registry/v3/registry/storage/driver/inmemory"

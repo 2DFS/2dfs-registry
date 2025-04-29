@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/2DFS/2dfs-registry/v3"
+	distribution "github.com/2DFS/2dfs-registry/v3"
 	"github.com/2DFS/2dfs-registry/v3/registry/storage/cache"
 	"github.com/2DFS/2dfs-registry/v3/registry/storage/cache/metrics"
 	"github.com/distribution/reference"

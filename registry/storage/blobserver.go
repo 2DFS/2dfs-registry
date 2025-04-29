@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/2DFS/2dfs-registry/v3"
+	distribution "github.com/2DFS/2dfs-registry/v3"
 	"github.com/2DFS/2dfs-registry/v3/registry/storage/driver"
 	"github.com/opencontainers/go-digest"
 )

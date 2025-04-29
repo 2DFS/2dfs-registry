@@ -14,7 +14,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/2DFS/2dfs-registry/v3"
+	distribution "github.com/2DFS/2dfs-registry/v3"
 	"github.com/2DFS/2dfs-registry/v3/internal/client/transport"
 	v2 "github.com/2DFS/2dfs-registry/v3/registry/api/v2"
 	"github.com/2DFS/2dfs-registry/v3/registry/storage/cache"

@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	tdfs "github.com/2DFS/2dfs-builder/filesystem"
-	"github.com/2DFS/2dfs-registry/v3"
+	distribution "github.com/2DFS/2dfs-registry/v3"
 	"github.com/opencontainers/go-digest"
 )
 

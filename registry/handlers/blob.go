@@ -3,7 +3,7 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/2DFS/2dfs-registry/v3"
+	distribution "github.com/2DFS/2dfs-registry/v3"
 	"github.com/2DFS/2dfs-registry/v3/internal/dcontext"
 	"github.com/2DFS/2dfs-registry/v3/registry/api/errcode"
 	"github.com/gorilla/handlers"
