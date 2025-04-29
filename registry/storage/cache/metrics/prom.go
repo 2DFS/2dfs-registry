@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/2DFS/2dfs-registry/v3"
+	distribution "github.com/2DFS/2dfs-registry/v3"
 	prometheus "github.com/2DFS/2dfs-registry/v3/metrics"
 	"github.com/2DFS/2dfs-registry/v3/registry/storage/cache"
 	"github.com/docker/go-metrics"
