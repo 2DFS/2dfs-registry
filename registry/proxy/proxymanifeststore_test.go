@@ -6,7 +6,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/2DFS/2dfs-registry/v3"
+	distribution "github.com/2DFS/2dfs-registry/v3"
 	"github.com/2DFS/2dfs-registry/v3/internal/client/auth"
 	"github.com/2DFS/2dfs-registry/v3/internal/client/auth/challenge"
 	"github.com/2DFS/2dfs-registry/v3/manifest/schema2"

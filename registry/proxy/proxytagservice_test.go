@@ -7,7 +7,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/2DFS/2dfs-registry/v3"
+	distribution "github.com/2DFS/2dfs-registry/v3"
 	v1 "github.com/opencontainers/image-spec/specs-go/v1"
 )
 

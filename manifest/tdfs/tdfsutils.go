@@ -13,7 +13,7 @@ import (
 	v1 "github.com/opencontainers/image-spec/specs-go/v1"
 
 	tdfsfilesystem "github.com/2DFS/2dfs-builder/filesystem"
-	"github.com/2DFS/2dfs-registry/v3"
+	distribution "github.com/2DFS/2dfs-registry/v3"
 	"github.com/2DFS/2dfs-registry/v3/manifest/ocischema"
 )
 
@@ -165,9 +165,17 @@ func ConvertTdfsManifestToOciManifest(ctx context.Context, tdfsManifest *ocische
 
 	//create new manifest
 	manifestBuilder := ocischema.NewManifestBuilder(blobService, newConfig, tdfsManifest.Annotations)
-	manifestBuilder.SetMediaType(v1.MediaTypeImageManifest)
+	err = manifestBuilder.SetMediaType(v1.MediaTypeImageManifest)
+	if err != nil {
+		log.Default().Printf("Error setting media type %s\n", v1.MediaTypeImageManifest)
+		return nil, err
+	}
 	for _, layer := range newLayers {
-		manifestBuilder.AppendReference(layer)
+		err := manifestBuilder.AppendReference(layer)
+		if err != nil {
+			log.Default().Printf("Error appending layer %s\n", layer.Digest)
+			return nil, err
+		}
 	}
 	return manifestBuilder.Build(ctx)
 }

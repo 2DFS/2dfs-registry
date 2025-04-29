@@ -3,7 +3,7 @@ package notifications
 import (
 	"testing"
 
-	"github.com/2DFS/2dfs-registry/v3"
+	distribution "github.com/2DFS/2dfs-registry/v3"
 	"github.com/2DFS/2dfs-registry/v3/manifest/schema2"
 	v2 "github.com/2DFS/2dfs-registry/v3/registry/api/v2"
 	"github.com/distribution/reference"

@@ -4,7 +4,7 @@ import (
 	"context"
 	"math"
 
-	"github.com/2DFS/2dfs-registry/v3"
+	distribution "github.com/2DFS/2dfs-registry/v3"
 	"github.com/2DFS/2dfs-registry/v3/registry/storage/cache"
 	"github.com/distribution/reference"
 	"github.com/hashicorp/golang-lru/arc/v2"

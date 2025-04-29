@@ -3,7 +3,7 @@ package testutil
 import (
 	"fmt"
 
-	"github.com/2DFS/2dfs-registry/v3"
+	distribution "github.com/2DFS/2dfs-registry/v3"
 	"github.com/2DFS/2dfs-registry/v3/internal/dcontext"
 	"github.com/2DFS/2dfs-registry/v3/manifest/manifestlist"
 	"github.com/2DFS/2dfs-registry/v3/manifest/ocischema"

@@ -10,7 +10,7 @@ import (
 	v1 "github.com/opencontainers/image-spec/specs-go/v1"
 	"golang.org/x/sync/errgroup"
 
-	"github.com/2DFS/2dfs-registry/v3"
+	distribution "github.com/2DFS/2dfs-registry/v3"
 	storagedriver "github.com/2DFS/2dfs-registry/v3/registry/storage/driver"
 )
 
