@@ -2,7 +2,7 @@
 
 This is a fork of the [OCI distribution](https://github.com/distribution/distribution) project, which is a core component of the OCI container ecosystem.
 
-[![Build Status](https://github.com/2DFS/2dfs-registry/workflows/build/badge.svg?branch=main&event=push)](https://github.com/2DFS/2dfs-registry/actions/workflows/build.yml?query=workflow%3Abuild)
+[![build](https://github.com/2DFS/2dfs-registry/actions/workflows/build.yml/badge.svg)](https://github.com/2DFS/2dfs-registry/actions/workflows/build.yml)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
 [![OCI Conformance](https://github.com/2DFS/2dfs-registry/workflows/conformance/badge.svg)](https://github.com/2DFS/2dfs-registry/actions?query=workflow%3Aconformance)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/2DFS/2dfs-registry/badge)](https://securityscorecards.dev/viewer/?uri=github.com/2DFS/2dfs-registry)
