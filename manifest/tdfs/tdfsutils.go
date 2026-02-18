@@ -144,25 +144,32 @@ func ConvertTdfsManifestToOciManifest(ctx context.Context, tdfsManifest *ocische
 							continue
 						}
 
+						inPartition := isInPartition(allotment, partitions)
+
+						// Non-stargz allotments have no lazy loading mechanism, so filter
+						// them at the manifest level — only include if they match the partition.
+						// Stargz allotments are always included; the runtime handles lazy loading.
+						if allotment.TOCDigest == "" && !inPartition {
+							log.Default().Printf("Skipping non-stargz allotment %s (not in partition)\n", allotment.Digest)
+							continue
+						}
+
 						// Check if allotment is already seen (deduplication)
 						if existing, ok := seenDigests[allotment.Digest]; ok {
 							// If already seen, just update prefetch status if this one matches partition
-							if !existing.ShouldPrefetch && isInPartition(allotment, partitions) {
+							if !existing.ShouldPrefetch && inPartition {
 								existing.ShouldPrefetch = true
 								log.Default().Printf("Allotment %s marked for prefetch\n", allotment.Digest)
 							}
 							continue
 						}
 
-						// Determine if this allotment should have prefetch annotation
-						shouldPrefetch := isInPartition(allotment, partitions)
-
 						seenDigests[allotment.Digest] = &AllotmentWithPrefetch{
 							Allotment:      allotment,
-							ShouldPrefetch: shouldPrefetch,
+							ShouldPrefetch: inPartition,
 						}
 
-						if shouldPrefetch {
+						if inPartition {
 							log.Default().Printf("Allotment %s at (%d,%d) matches partition, marked for prefetch\n",
 								allotment.Digest, allotment.Row, allotment.Col)
 						}
