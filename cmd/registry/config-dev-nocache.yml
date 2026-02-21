@@ -5,10 +5,13 @@ log:
     service: registry
     environment: development
 storage:
+    redirect:
+      disable: true
     delete:
       enabled: true
     cache:
         blobdescriptor: inmemory
+        blobdescriptorsize: 0
     filesystem:
         rootdirectory: /var/lib/registry
     maintenance:
